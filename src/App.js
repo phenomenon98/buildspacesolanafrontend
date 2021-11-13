@@ -9,7 +9,7 @@ import {
 import idl from './idl.json';
 
 // SystemProgram is a reference to the Solana runtime!
-const { SystemProgram, Keypair } = web3;
+const { SystemProgram } = web3;
 
 // Create a keypair for the account that will hold the GIF data.
 const arr = Object.values(kp._keypair.secretKey)
@@ -27,12 +27,12 @@ const opts = {
   preflightCommitment: "processed"
 }
 
-const TEST_GIFS = [
-	'https://lh3.googleusercontent.com/HOXT4FC1kp6pWQOcqlC-Sz3VeVO7SpPrU8djdxZG0IoEAs3ilt1YwJTp3aNIchpo_qfwKycr9yMGzxLdRZ_dmk11=w600',
-  'https://lh3.googleusercontent.com/RDY2WDaiPEi0RSZqmBRD6-YrSp2c9gnOefiaDL3QvgiVkGHkdae6K77o-0YLAAu95h4fqUrKss84aafZmpEeD5Y8ng=s0',
-  'https://lh3.googleusercontent.com/-6Ws-Lm-uWbdeyA_rpPPpnJGfCOTdjlADylfSZYoArJiJ2MdL4pZ_cEoAa6uWW6klKAHAdtOSfXFWjMnlpUvqA=w600',
-  'https://lh3.googleusercontent.com/cPvVA8sV0Al0lpyrNdFAfXIQrJkz2W-V6huZ9V9RdyPmVVP7JNnrqyAmnrvo4ppAJBwxJEfuWRc0iNwb6tud1DGaOA=w600'
-]
+// const TEST_GIFS = [
+// 	'https://lh3.googleusercontent.com/HOXT4FC1kp6pWQOcqlC-Sz3VeVO7SpPrU8djdxZG0IoEAs3ilt1YwJTp3aNIchpo_qfwKycr9yMGzxLdRZ_dmk11=w600',
+//   'https://lh3.googleusercontent.com/RDY2WDaiPEi0RSZqmBRD6-YrSp2c9gnOefiaDL3QvgiVkGHkdae6K77o-0YLAAu95h4fqUrKss84aafZmpEeD5Y8ng=s0',
+//   'https://lh3.googleusercontent.com/-6Ws-Lm-uWbdeyA_rpPPpnJGfCOTdjlADylfSZYoArJiJ2MdL4pZ_cEoAa6uWW6klKAHAdtOSfXFWjMnlpUvqA=w600',
+//   'https://lh3.googleusercontent.com/cPvVA8sV0Al0lpyrNdFAfXIQrJkz2W-V6huZ9V9RdyPmVVP7JNnrqyAmnrvo4ppAJBwxJEfuWRc0iNwb6tud1DGaOA=w600'
+// ]
 
 const App = () => {
   // State
@@ -177,7 +177,8 @@ const App = () => {
             {/* We use index as the key instead, also, the src is now item.gifLink */}
             {gifList.map((item, index) => (
               <div className="gif-item" key={index}>
-                <img src={item.gifLink} />
+                
+                <img src={item.gifLink} alt=""/>
                 <div class="sub-text">{item.userAddress.toString()}</div>
               </div>
             ))}
@@ -220,6 +221,7 @@ const App = () => {
   
       getGifList()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletAddress]);
   return (
     <div className="App">
